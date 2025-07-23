@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bare Disposibles - Food Service Products</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .active-filter {
+            background-color: #10B981; /* Emerald-500 */
+            color: white;
+            border-color: #10B981;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-gray-900">Bare Disposibles</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Home</a>
+                    <a href="#products" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Products</a>
+                    <a href="#about" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">About Us</a>
+                    <a href="#contact" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Contact</a>
+                </nav>
+
+                <!-- Cart Icon -->
+                <div class="flex items-center">
+                     <a href="#" class="relative p-2 rounded-full text-gray-600 hover:bg-gray-100 hover:text-emerald-600">
+                        <i data-feather="shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Products</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">About Us</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Your One-Stop Shop for Food Service Disposables</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">High-quality disposable products in foam, foil, paper, plastic, and biodegradable materials.</p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        <a href="#products" class="rounded-md bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">View Catalog</a>
+                        <a href="#contact" class="text-sm font-semibold leading-6 text-gray-900">Contact Sales <span aria-hidden="true">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-20 sm:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="max-w-2xl mx-auto text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Product Catalog</h2>
+                    <p class="mt-4 text-lg text-gray-600">Browse our wide selection of disposable products. Filter by category to find exactly what you need.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div id="category-filters" class="flex flex-wrap justify-center gap-2 mb-12">
+                    <!-- Filters will be injected here by JavaScript -->
+                </div>
+
+                <!-- Product Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Products will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Bare Disposibles</h2>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">
+                            We are proud suppliers of a comprehensive range of disposable food service products. Our catalog includes items made from foam, foil, paper, plastic, and eco-friendly biodegradable materials. We are committed to providing quality products and reliable service to businesses and individuals across Trinidad and Tobago.
+                        </p>
+                        <dl class="mt-10 space-y-4 text-base leading-7 text-gray-600">
+                            <div class="flex gap-x-3">
+                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
+                                <dd>Wide selection for all needs</dd>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
+                                <dd>B2B & B2C friendly pricing</dd>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
+                                <dd>Eco-friendly options available</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="order-first md:order-last">
+                        <img src="https://placehold.co/600x400/34D399/FFFFFF?text=Bare+Disposibles" 
+                             alt="A collage of disposable food containers" 
+                             class="rounded-2xl shadow-xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 sm:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl mx-auto text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Get In Touch</h2>
+                    <p class="mt-4 text-lg text-gray-600">We're here to help. Contact us for orders, inquiries, or quotes.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
+                                <i data-feather="map-pin"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Address</h3>
+                                <p class="text-gray-600">52 S S Erin Road, Duncan Village</p>
+                                <p class="text-gray-600">San Fernando, Trinidad and Tobago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
+                                <i data-feather="phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Phone</h3>
+                                <p class="text-gray-600">(868) 741-4452</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
+                                <i data-feather="mail"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Email</h3>
+                                <p class="text-gray-600"><a href="mailto:baredisposables@gmail.com" class="hover:text-emerald-600">baredisposables@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Map -->
+                    <div>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.974955364883!2d-61.46505708573931!3d10.27931117094286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c36181165cb4e6b%3A0x535215e985876008!2sS%20S%20Erin%20Rd%2C%20San%20Fernando%2C%20Trinidad%20%26%20Tobago!5e0!3m2!1sen!2sus!4v1689889264512!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="rounded-lg shadow-md">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2024 Bare Disposibles. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <!-- Add social media links here if available -->
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DATA ---
+            const products = [
+                { itemNo: 'RDWCR12', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Red, w/lids', size: '12oz', price: 45.00, qty: 25, category: 'Cups', image: 'cup' },
+                { itemNo: 'RDWCG12', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Green, w/lids', size: '12oz', price: 45.00, qty: 25, category: 'Cups', image: 'cup' },
+                { itemNo: 'RDWCR08', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Red, w/lids', size: '8oz', price: 41.63, qty: 25, category: 'Cups', image: 'cup' },
+                { itemNo: 'BCP4.5', description: 'BAKING CUPS, pink', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
+                { itemNo: 'BCR4.5', description: 'BAKING CUPS, red', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
+                { itemNo: 'BCB4.5', description: 'BAKING CUPS, black', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
+                { itemNo: 'BCW4.5', description: 'BAKING CUPS, white', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
+                { itemNo: 'FPL7', description: 'FOIL PANS AND LID', size: '7"', price: 61.00, qty: 25, category: 'Foil', image: 'archive' },
+                { itemNo: 'FPL8', description: 'FOIL PANS AND LID', size: '8"', price: 135.00, qty: 25, category: 'Foil', image: 'archive' },
+                { itemNo: 'FPL9', description: 'FOIL PANS AND LID', size: '9"', price: 110.25, qty: 25, category: 'Foil', image: 'archive' },
+                { itemNo: 'CCC12A', description: '12 CUPCAKE CLEAR CONTAINERS', size: '12 count', price: 19.95, qty: 1, category: 'Containers', image: 'box' },
+                { itemNo: 'CCC06A', description: '6 CUPCAKE CLEAR CONTAINERS', size: '6 count', price: 4.75, qty: 1, category: 'Containers', image: 'box' },
+                { itemNo: 'CCC06B', description: '6 CUPCAKE CLEAR CONTAINERS', size: '6 count', price: 48.00, qty: 12, category: 'Containers', image: 'box' },
+                { itemNo: 'PFCB10', description: 'PINK FLORAL CAKE BOX', size: '10x10"', price: 15.00, qty: 1, category: 'Boxes', image: 'gift' },
+                { itemNo: 'PSCB10', description: 'PINSTRIPE CAKE BOX', size: '10x10"', price: 15.00, qty: 1, category: 'Boxes', image: 'gift' },
+                { itemNo: '120F-P', description: 'FOAM CUP', size: '12oz', price: 325.00, qty: 1000, category: 'Cups', image: 'coffee' },
+                { itemNo: '140F-P', description: 'FOAM CUP', size: '14oz', price: 447.00, qty: 1000, category: 'Cups', image: 'coffee' },
+                { itemNo: '160F-P', description: 'FOAM CUP', size: '16oz', price: 447.00, qty: 1000, category: 'Cups', image: 'coffee' },
+                { itemNo: '120F-C', description: 'FOAM CUP', size: '12oz', price: 9.11, qty: 25, category: 'Cups', image: 'coffee' },
+                { itemNo: '140F-C', description: 'FOAM CUP', size: '14oz', price: 12.15, qty: 25, category: 'Cups', image: 'coffee' },
+                { itemNo: '160F-C', description: 'FOAM CUP', size: '16oz', price: 12.15, qty: 25, category: 'Cups', image: 'coffee' },
+                { itemNo: 'CC4', description: 'CUP CARRIER', size: '4 cup', price: 1.75, qty: 1, category: 'Accessories', image: 'grid' },
+                { itemNo: '01-00-25B (3PL)', description: '9" Palmleaf Plate', size: '9"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-00-13B (3PL)', description: '6"x6" Compostable Palmleaf Bowl', size: '6x6"', price: 42.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-00-20B (3PL)', description: '8"x8" Compostable Palmleaf Bowl', size: '8x8"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '02-22-6PY (3PL)', description: '6.5" Compostable Palmleaf Deep Pyramid Bowl', size: '6.5"', price: 48.00, qty: 25, category: 'Biodegradable', image: 'triangle' },
+                { itemNo: '01-00-5DR (3PL)', description: '5x5" Compostable Palmleaf Deep Bowl', size: '5x5"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-00-22B (3PL)', description: '8x8" Compostable Palmleaf Salad Bowl', size: '8x8"', price: 57.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-01-20B (3PL)', description: '7" Compostable Palmleaf Round plates', size: '7"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-01-25B (3PL)', description: '10" Compostable Palmleaf Round Plates', size: '10"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-22-15B (3PL)', description: '6" Compostable Palmleaf Plate', size: '6"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
+                { itemNo: '01-00-16B (3PL)', description: '7"x7" Compostable Palmleaf Square Plate', size: '7x7"', price: 48.00, qty: 25, category: 'Biodegradable', image: 'square' },
+                { itemNo: 'TG-CB-4x6 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '4x6x2"', price: 7.36, qty: 1, category: 'Biodegradable', image: 'package' },
+                { itemNo: 'TG-CB-6x8 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '6.5x8.5x3"', price: 11.04, qty: 1, category: 'Biodegradable', image: 'package' },
+                { itemNo: 'TG-CB-8x1 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '8x11x3"', price: 15.84, qty: 1, category: 'Biodegradable', image: 'package' },
+                { itemNo: 'TG-CB-5x1 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '11x15x3"', price: 15.84, qty: 1, category: 'Biodegradable', image: 'package' },
+                { itemNo: 'TG-BB-6x6 (3PL)', description: 'Collapsible Balsawood Box with Lid (Compartment)', size: '6x8"', price: 13.60, qty: 1, category: 'Biodegradable', image: 'package' },
+            ];
+
+            // --- DOM Elements ---
+            const productGrid = document.getElementById('product-grid');
+            const categoryFilters = document.getElementById('category-filters');
+            const cartCountElement = document.getElementById('cart-count');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            let cartCount = 0;
+
+            // --- Functions ---
+            
+            // Function to create a product card
+            function createProductCard(product) {
+                return `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 ease-in-out flex flex-col">
+                        <div class="bg-gray-200 h-48 flex items-center justify-center text-gray-400">
+                           <i data-feather="${product.image || 'package'}" class="w-16 h-16"></i>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-lg font-semibold text-gray-900 flex-grow">${product.description}</h3>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-500">Item #: ${product.itemNo}</p>
+                                <p class="text-sm text-gray-500">Size: ${product.size}</p>
+                                <p class="text-sm text-gray-500">Qty: ${product.qty}</p>
+                            </div>
+                            <div class="mt-6 flex justify-between items-center">
+                                <p class="text-xl font-bold text-gray-900">$${product.price.toFixed(2)}</p>
+                                <button class="add-to-cart-btn rounded-md bg-emerald-100 text-emerald-700 px-3 py-2 text-sm font-medium hover:bg-emerald-200" data-product-id="${product.itemNo}">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Function to render products
+            function renderProducts(filter = 'All') {
+                productGrid.innerHTML = '';
+                const filteredProducts = filter === 'All' ? products : products.filter(p => p.category === filter);
+                
+                if (filteredProducts.length === 0) {
+                    productGrid.innerHTML = `<p class="text-center col-span-full">No products found in this category.</p>`;
+                    return;
+                }
+
+                filteredProducts.forEach(product => {
+                    productGrid.innerHTML += createProductCard(product);
+                });
+                feather.replace(); // Re-initialize icons after rendering
+            }
+
+            // Function to create and render category filters
+            function renderFilters() {
+                const categories = ['All', ...new Set(products.map(p => p.category))];
+                categoryFilters.innerHTML = categories.map(cat => `
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-gray-300 rounded-full hover:bg-gray-200 transition-colors" data-category="${cat}">
+                        ${cat}
+                    </button>
+                `).join('');
+
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+                        button.classList.add('active-filter');
+                        renderProducts(button.dataset.category);
+                    });
+                });
+                // Set 'All' as active by default
+                filterButtons[0].classList.add('active-filter');
+            }
+            
+            // Function to handle adding to cart
+            function handleAddToCart(e) {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    cartCount++;
+                    cartCountElement.textContent = cartCount;
+                    cartCountElement.classList.add('animate-ping-once');
+                    setTimeout(() => cartCountElement.classList.remove('animate-ping-once'), 500); // Custom animation class
+                }
+            }
+
+            // --- Event Listeners ---
+            
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.setAttribute('data-feather', mobileMenu.classList.contains('hidden') ? 'menu' : 'x');
+                feather.replace();
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.addEventListener('click', (e) => {
+                if(e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
+                    feather.replace();
+                }
+            });
+
+            // Add to cart event delegation
+            productGrid.addEventListener('click', handleAddToCart);
+
+
+            // --- Initial Load ---
+            renderFilters();
+            renderProducts();
+            feather.replace();
+
+            // Add a simple animation class for the cart count
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes ping-once {
+                    75%, 100% {
+                        transform: scale(1.5);
+                        opacity: 0;
+                    }
+                }
+                .animate-ping-once {
+                    animation: ping-once 0.5s cubic-bezier(0, 0, 0.2, 1);
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
