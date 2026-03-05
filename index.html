@@ -1,392 +1,923 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bare Disposibles - Food Service Products</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anil Kissoon Taxis — Premier Transport, Georgetown, Guyana</title>
+  <meta name="description" content="Georgetown's most trusted premium taxi service. Airport transfers, corporate accounts, and guided city tours. Fully licensed H-Series vehicles, GPS tracked, uniformed drivers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --ink:        #0C1810;
+      --navy:       #0D1F35;
+      --navy-mid:   #122840;
+      --navy-light: #1B3A58;
+      --amber:      #C9920D;
+      --amber-hi:   #E8B535;
+      --amber-pale: #F7E8B8;
+      --cream:      #F4EDD8;
+      --slate:      #7A96AE;
+      --muted-g:    #5A7060;
+      --white:      #FFFFFF;
+      --bd:         rgba(201,146,13,0.2);
+      --bdl:        rgba(12,26,18,0.12);
+    }
 
-    <style>
-        /* Custom styles */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .active-filter {
-            background-color: #10B981; /* Emerald-500 */
-            color: white;
-            border-color: #10B981;
-        }
-    </style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── HALFTONE ───────────────────────────────────────── */
+    .halftone {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(circle, rgba(201,146,13,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(13,31,53,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bd);
+      transition: background 0.4s;
+    }
+    .logo { text-decoration: none; display: flex; flex-direction: column; gap: 2px; }
+    .logo-name {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--white); line-height: 1;
+    }
+    .logo-sub {
+      font-size: 0.58rem; font-weight: 400;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .header-book {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy); background: var(--amber);
+      padding: 10px 20px; border-radius: 40px;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .header-book:hover { background: var(--amber-hi); transform: translateY(-1px); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100svh;
+      display: grid; grid-template-columns: 1fr;
+      align-items: center;
+      padding: 100px 32px 80px;
+      background: var(--navy); overflow: hidden;
+    }
+    @media (min-width: 900px) { .hero { grid-template-columns: 1fr 420px; gap: 40px; } }
+
+    .hero-mesh {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 80% 30%, rgba(201,146,13,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 10% 80%, rgba(27,58,88,0.5) 0%, transparent 60%);
+      animation: meshShift 14s ease-in-out infinite alternate;
+    }
+    @keyframes meshShift {
+      0%   { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 28px;
+    }
+    .eyebrow-line { display: block; width: 36px; height: 1px; background: var(--amber); }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      font-weight: 600; line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 30px;
+    }
+    .hero h1 .italic-line {
+      display: block; font-style: italic;
+      font-weight: 300; color: var(--amber);
+    }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300;
+      color: var(--slate); max-width: 480px;
+      line-height: 1.8; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.82rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none;
+      color: var(--navy); background: var(--amber);
+      padding: 15px 28px; border-radius: 40px;
+      box-shadow: 0 6px 28px rgba(201,146,13,0.3);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-wa:hover { background: var(--amber-hi); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(201,146,13,0.4); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 300;
+      letter-spacing: 0.06em; text-decoration: none;
+      color: rgba(255,255,255,0.55);
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--amber); border-color: var(--amber); }
+
+    /* Georgetown civic silhouette — desktop only */
+    .hero-graphic {
+      display: none; position: relative; z-index: 1;
+      align-items: flex-end; justify-content: center;
+      height: 380px;
+    }
+    @media (min-width: 900px) { .hero-graphic { display: flex; } }
+    .city-svg { width: 100%; max-width: 400px; }
+
+    /* ─── TRUST STRIP ────────────────────────────────────── */
+    .trust-strip {
+      background: rgba(255,255,255,0.025);
+      border-top: 1px solid var(--bd);
+      border-bottom: 1px solid var(--bd);
+      padding: 0 32px; overflow-x: auto; scrollbar-width: none;
+    }
+    .trust-strip::-webkit-scrollbar { display: none; }
+    .trust-inner {
+      display: flex; min-width: max-content;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .t-item {
+      display: flex; align-items: center; gap: 11px;
+      padding: 18px 32px;
+      border-right: 1px solid var(--bd);
+      white-space: nowrap;
+    }
+    .t-item:first-child { padding-left: 0; }
+    .t-item:last-child { border-right: none; }
+    .t-ico { color: var(--amber); flex-shrink: 0; }
+    .t-lbl {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); line-height: 1.3;
+    }
+    .t-lbl small {
+      display: block; font-weight: 300;
+      letter-spacing: 0.04em; text-transform: none;
+      color: var(--slate); font-size: 0.67rem; margin-top: 1px;
+    }
+
+    /* ─── SECTION SCAFFOLDING ────────────────────────────── */
+    section { padding: 96px 32px; position: relative; }
+    .si { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 12px;
+    }
+    .eyebrow::before { content: ''; display: block; width: 22px; height: 1px; background: var(--amber); }
+
+    h2.st {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 500; line-height: 1.1;
+      color: var(--white); margin-bottom: 18px;
+    }
+    h2.st em { font-style: italic; font-weight: 300; color: var(--amber); }
+    h2.st.ink { color: var(--ink); }
+    h2.st.ink em { color: var(--amber); }
+
+    .sb {
+      font-size: 0.93rem; font-weight: 300;
+      color: var(--slate); max-width: 520px;
+      line-height: 1.8; margin-bottom: 48px;
+    }
+    .sb.ink { color: var(--muted-g); }
+
+    .amber-rule { width: 44px; height: 3px; background: var(--amber); border-radius: 2px; margin: 16px 0 44px; }
+
+    /* ─── SERVICES ───────────────────────────────────────── */
+    #services { background: var(--navy-mid); }
+
+    .svc-list { display: flex; flex-direction: column; gap: 2px; }
+    .svc-card {
+      display: grid; grid-template-columns: 56px 1fr auto;
+      align-items: center; gap: 28px;
+      padding: 32px 36px;
+      background: var(--navy);
+      border: 1px solid var(--bd);
+      position: relative; overflow: hidden;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .svc-card::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--amber);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+    .svc-card:hover { background: rgba(255,255,255,0.02); border-color: rgba(201,146,13,0.4); }
+    .svc-card:hover::before { transform: scaleY(1); }
+    .svc-n {
+      font-family: 'Fraunces', serif; font-size: 2.4rem;
+      font-weight: 300; font-style: italic;
+      color: rgba(201,146,13,0.18); line-height: 1; text-align: center;
+    }
+    .svc-title {
+      font-family: 'Fraunces', serif; font-optical-sizing: auto;
+      font-size: 1.28rem; font-weight: 500;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .svc-desc { font-size: 0.875rem; font-weight: 300; color: var(--slate); line-height: 1.7; }
+    .svc-pill {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--amber); border: 1px solid var(--bd);
+      padding: 6px 14px; border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .svc-card { grid-template-columns: 40px 1fr; gap: 14px; padding: 22px 18px; }
+      .svc-pill { display: none; }
+    }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────── */
+    #how { background: var(--cream); }
+
+    .steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+    @media (min-width: 680px) { .steps { grid-template-columns: repeat(3,1fr); } }
+
+    .step {
+      padding: 40px 34px; position: relative;
+      border-bottom: 1px solid var(--bdl);
+    }
+    @media (min-width: 680px) {
+      .step { border-bottom: none; border-right: 1px solid var(--bdl); }
+      .step:last-child { border-right: none; }
+    }
+    .step-n {
+      font-family: 'Fraunces', serif; font-size: 3.8rem;
+      font-weight: 300; font-style: italic;
+      color: rgba(201,146,13,0.16); line-height: 1; margin-bottom: 16px;
+    }
+    .step-title {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .step-desc { font-size: 0.875rem; font-weight: 300; color: var(--muted-g); line-height: 1.75; }
+
+    /* ─── FOUNDER ────────────────────────────────────────── */
+    #founder { background: var(--navy); padding: 0 32px; }
+    .founder-shell {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr;
+      border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);
+    }
+    @media (min-width: 768px) { .founder-shell { grid-template-columns: 1fr 1fr; } }
+
+    .founder-q {
+      padding: 72px 48px 72px 0;
+    }
+    @media (min-width: 768px) { .founder-q { border-right: 1px solid var(--bd); } }
+    @media (max-width: 767px) { .founder-q { padding: 56px 0 0; } }
+
+    blockquote.fq {
+      font-family: 'Fraunces', serif; font-optical-sizing: auto;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.4; color: var(--white); margin-bottom: 28px;
+    }
+    blockquote.fq span { color: var(--amber); }
+    .fq-attr {
+      font-size: 0.73rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate);
+    }
+    .fq-attr strong { color: var(--white); font-weight: 500; }
+
+    .founder-stats {
+      padding: 72px 0 72px 48px;
+      display: flex; flex-direction: column; justify-content: center; gap: 32px;
+    }
+    @media (max-width: 767px) { .founder-stats { padding: 32px 0 56px; } }
+
+    .f-stat-n {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem; font-weight: 600; line-height: 1;
+      color: var(--amber);
+    }
+    .f-stat-l { font-size: 0.78rem; font-weight: 300; color: var(--slate); margin-top: 3px; }
+
+    /* ─── PRICING ────────────────────────────────────────── */
+    #pricing { background: var(--navy-mid); }
+
+    .price-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.74rem; color: var(--amber);
+      background: rgba(201,146,13,0.07);
+      border: 1px solid var(--bd); padding: 7px 16px;
+      border-radius: 20px; margin-bottom: 32px;
+    }
+    .ptable {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--bd);
+    }
+    .ptable thead tr { border-bottom: 1px solid var(--bd); background: rgba(201,146,13,0.05); }
+    .ptable th {
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); padding: 13px 20px; text-align: left;
+    }
+    .ptable tbody tr { border-bottom: 1px solid rgba(201,146,13,0.07); transition: background 0.18s; }
+    .ptable tbody tr:last-child { border-bottom: none; }
+    .ptable tbody tr:hover { background: rgba(201,146,13,0.025); }
+    .ptable td { padding: 15px 20px; font-size: 0.875rem; }
+    .ptable td:first-child { color: var(--white); }
+    .ptable td:nth-child(2) { color: var(--slate); font-size: 0.78rem; }
+    .ptable td:last-child {
+      font-family: 'Fraunces', serif; font-size: 1.2rem;
+      font-weight: 500; color: var(--amber); white-space: nowrap;
+    }
+    .price-note { margin-top: 12px; font-size: 0.72rem; font-weight: 300; color: var(--slate); }
+
+    /* ─── COVERAGE ───────────────────────────────────────── */
+    #coverage { background: var(--cream); }
+    .cov-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; }
+    @media (min-width: 768px) { .cov-grid { grid-template-columns: 1fr 1fr; } }
+
+    .map-wrap {
+      background: var(--ink); border: 1px solid var(--bdl);
+      min-height: 300px; display: flex;
+      align-items: center; justify-content: center; overflow: hidden;
+    }
+    .map-svg { width: 100%; max-width: 360px; padding: 24px; }
+
+    .zone-list { display: flex; flex-direction: column; }
+    .zone-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 17px 0; border-bottom: 1px solid var(--bdl);
+    }
+    .zone-row:last-child { border-bottom: none; }
+    .zpip { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); margin-top: 6px; flex-shrink: 0; }
+    .zpip.soft { background: #9AABA0; }
+    .zname { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); margin-bottom: 2px; }
+    .zdesc { font-size: 0.78rem; font-weight: 300; color: var(--muted-g); line-height: 1.6; }
+
+    /* ─── DRIVERS ────────────────────────────────────────── */
+    #drivers { background: var(--navy); }
+    .dg { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 2px; }
+    .dc {
+      background: var(--navy-mid); border: 1px solid var(--bd);
+      padding: 36px 26px; text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .dc:hover { border-color: rgba(201,146,13,0.5); transform: translateY(-2px); }
+    .da {
+      width: 62px; height: 62px; border-radius: 50%;
+      background: var(--navy-light); border: 1px solid var(--bd);
+      margin: 0 auto 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 1.4rem;
+      font-weight: 400; font-style: italic; color: var(--amber);
+    }
+    .dn { font-family: 'Fraunces', serif; font-size: 1.08rem; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .dy { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+    .db { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); border: 1px solid rgba(201,146,13,0.14); padding: 4px 10px; border-radius: 10px; }
+
+    /* ─── WHY NOT RIDESHARE ──────────────────────────────── */
+    #why { background: var(--navy-mid); overflow: hidden; }
+    .vs-wrap {
+      display: grid; grid-template-columns: 1fr;
+      border: 1px solid var(--bd); position: relative;
+    }
+    @media (min-width: 640px) { .vs-wrap { grid-template-columns: 1fr 1fr; } }
+
+    .vs-div {
+      display: none; position: absolute;
+      left: 50%; top: 0; bottom: 0; transform: translateX(-50%);
+      width: 1px; background: var(--bd); z-index: 2;
+    }
+    .vs-div::before {
+      content: 'VS';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 0.85rem; font-weight: 400; color: var(--slate);
+      background: var(--navy-mid); padding: 6px 10px;
+      border: 1px solid var(--bd); border-radius: 2px;
+    }
+    @media (min-width: 640px) { .vs-div { display: block; } }
+
+    .vs-col { padding: 42px 38px; }
+    .vs-col.them { background: rgba(0,0,0,0.14); }
+    .vs-col.us { background: rgba(201,146,13,0.03); }
+    @media (max-width: 639px) { .vs-col.them { border-bottom: 1px solid var(--bd); } }
+
+    .vs-head {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      padding-bottom: 16px; margin-bottom: 22px;
+      border-bottom: 1px solid var(--bd);
+    }
+    .vh-them { color: var(--slate); }
+    .vh-us { color: var(--amber); }
+
+    .vr { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 17px; font-size: 0.875rem; }
+    .vr:last-child { margin-bottom: 0; }
+    .vck { color: var(--amber); flex-shrink: 0; margin-top: 3px; }
+    .vcx { color: #3A4E5E; flex-shrink: 0; margin-top: 3px; }
+    .vt { color: var(--white); line-height: 1.5; }
+    .vt span { display: block; color: var(--slate); font-size: 0.77rem; font-weight: 300; margin-top: 2px; }
+
+    /* ─── CTA BAND ───────────────────────────────────────── */
+    .cta-band {
+      background: var(--navy); padding: 84px 32px;
+      text-align: center; border-top: 1px solid var(--bd);
+      position: relative; overflow: hidden;
+    }
+    .cta-band h2 {
+      font-family: 'Fraunces', serif; font-optical-sizing: auto;
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 500;
+      color: var(--white); margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .cta-band h2 em { font-style: italic; font-weight: 300; color: var(--amber); }
+    .cta-band p {
+      font-size: 0.95rem; font-weight: 300; color: var(--slate);
+      max-width: 460px; margin: 0 auto 36px; line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .cta-band .btn-wa { position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { background: var(--ink); padding: 56px 32px 32px; border-top: 1px solid rgba(201,146,13,0.12); }
+    .fg { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media (min-width: 640px) { .fg { grid-template-columns: 2fr 1fr 1fr; } }
+    .fb-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 500; color: var(--white); }
+    .fb-loc { font-size: 0.57rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); display: block; margin: 4px 0 14px; }
+    .fb-p { font-size: 0.82rem; font-weight: 300; color: #4A6050; line-height: 1.75; max-width: 280px; }
+    .fc h4 { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+    .fc ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .fc a { font-size: 0.82rem; font-weight: 300; color: #4A6050; text-decoration: none; transition: color 0.2s; }
+    .fc a:hover { color: var(--white); }
+    .fb-bot {
+      max-width: 1100px; margin: 36px auto 0;
+      padding-top: 22px; border-top: 1px solid rgba(201,146,13,0.07);
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: space-between; align-items: center;
+    }
+    .fb-bot p { font-size: 0.7rem; font-weight: 300; color: #3A4A3A; }
+    .lic-badge { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(201,146,13,0.18); padding: 5px 12px; border-radius: 10px; }
+
+    /* ─── FLOATING WA ────────────────────────────────────── */
+    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; filter: drop-shadow(0 4px 18px rgba(0,0,0,0.35)); }
+    .wa-lbl { background: var(--white); color: var(--ink); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 15px 12px 20px; border-radius: 28px 0 0 28px; white-space: nowrap; line-height: 1; }
+    .wa-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 48px; height: 44px; background: #25D366;
+      border-radius: 0 28px 28px 0; text-decoration: none;
+      position: relative; transition: background 0.2s, transform 0.15s;
+    }
+    .wa-btn:hover { background: #1ebe5a; transform: scale(1.04); }
+    .wa-btn::before {
+      content: ''; position: absolute; inset: -4px;
+      border-radius: 50%; border: 2px solid rgba(37,211,102,0.35);
+      animation: wapulse 2.6s ease-out infinite;
+    }
+    @keyframes wapulse {
+      0%   { transform: scale(0.9); opacity: 0.8; }
+      65%  { transform: scale(1.35); opacity: 0; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    @media (max-width: 480px) {
+      .wa-lbl { display: none; }
+      .wa-btn { border-radius: 50%; width: 56px; height: 56px; }
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .r { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE MISC ────────────────────────────────── */
+    @media (max-width: 480px) {
+      section { padding: 64px 20px; }
+      header  { padding: 0 20px; }
+      .hero   { padding: 90px 20px 64px; }
+      .vs-col { padding: 30px 22px; }
+      #founder { padding: 0 20px; }
+      .trust-strip { padding: 0 20px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="#">
-    <img src="https://raw.githubusercontent.com/thescreenwriter/baredisposables/refs/heads/main/images/logo.png" alt="Bare Disposibles Logo" class="h-12 w-auto">
-</a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Home</a>
-                    <a href="#products" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Products</a>
-                    <a href="#about" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">About Us</a>
-                    <a href="#contact" class="text-gray-600 hover:text-emerald-600 transition duration-150 ease-in-out">Contact</a>
-                </nav>
+<!-- ─── HEADER ──────────────────────────────────────────── -->
+<header id="hdr">
+  <a href="#" class="logo">
+    <span class="logo-name">Anil Kissoon Taxis</span>
+    <span class="logo-sub">Georgetown · Guyana</span>
+  </a>
+  <a class="header-book" href="https://wa.me/5926475302?text=Hi%2C%20I'd%20like%20to%20book%20a%20premium%20taxi.%20Pickup%3A%20%5BLocation%5D%20at%20%5BTime%5D." target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.562 4.134 1.541 5.864L0 24l6.305-1.515A11.947 11.947 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.359-.213-3.741.898.946-3.635-.234-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>
+    Book Now
+  </a>
+</header>
 
-                <!-- Cart Icon -->
-                <div class="flex items-center">
-                     <a href="#" class="relative p-2 rounded-full text-gray-600 hover:bg-gray-100 hover:text-emerald-600">
-                        <i data-feather="shopping-cart"></i>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </a>
-                </div>
+<!-- ─── HERO ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="halftone" style="opacity:0.45"></div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500">
-                        <span class="sr-only">Open main menu</span>
-                        <i data-feather="menu"></i>
-                    </button>
-                </div>
-            </div>
+  <div class="hero-content r">
+    <span class="hero-eyebrow"><span class="eyebrow-line"></span>Georgetown, Guyana</span>
+    <h1>
+      Punctual.<br/>
+      <span class="italic-line">Professional.</span>
+      On time, every time.
+    </h1>
+    <p class="hero-sub">Georgetown's premier private taxi service — built for expatriates, corporate travellers, and international visitors who need transport they can rely on without negotiation.</p>
+    <div class="hero-actions">
+      <a class="btn-wa" href="https://wa.me/5926475302?text=Hi%2C%20I'd%20like%20to%20book%20a%20premium%20taxi.%20Pickup%3A%20%5BLocation%5D%20at%20%5BTime%5D." target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.562 4.134 1.541 5.864L0 24l6.305-1.515A11.947 11.947 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.359-.213-3.741.898.946-3.635-.234-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Book via WhatsApp
+      </a>
+      <a class="btn-ghost" href="#services">View Services →</a>
+    </div>
+  </div>
+
+  <!-- Georgetown civic silhouette — desktop only -->
+  <div class="hero-graphic">
+    <svg class="city-svg" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stabroek Market Clock Tower -->
+      <g opacity="0.17" fill="rgba(201,146,13,1)">
+        <rect x="185" y="82" width="30" height="178"/>
+        <polygon points="162,260 238,260 248,280 152,280"/>
+        <rect x="177" y="102" width="46" height="44" rx="2"/>
+        <polygon points="200,40 187,84 213,84"/>
+        <rect x="197" y="28" width="6" height="16"/>
+        <rect x="182" y="107" width="36" height="34" rx="15" fill="rgba(201,146,13,0.28)"/>
+        <rect x="171" y="142" width="14" height="24" rx="7"/>
+        <rect x="215" y="142" width="14" height="24" rx="7"/>
+        <rect x="167" y="200" width="20" height="36" rx="10"/>
+        <rect x="194" y="200" width="12" height="36"/>
+        <rect x="213" y="200" width="20" height="36" rx="10"/>
+        <rect x="148" y="278" width="104" height="8"/>
+        <rect x="138" y="286" width="124" height="8"/>
+        <rect x="128" y="294" width="144" height="6"/>
+      </g>
+      <!-- Colonial buildings left -->
+      <g opacity="0.09" fill="rgba(201,146,13,1)">
+        <rect x="18" y="184" width="62" height="116"/>
+        <rect x="23" y="162" width="52" height="26"/>
+        <rect x="26" y="194" width="12" height="20"/> <rect x="44" y="194" width="12" height="20"/> <rect x="62" y="194" width="12" height="20"/>
+        <rect x="26" y="224" width="12" height="20"/> <rect x="44" y="224" width="12" height="20"/> <rect x="62" y="224" width="12" height="20"/>
+        <rect x="13" y="298" width="72" height="6"/>
+        <rect x="88" y="202" width="52" height="98"/>
+        <rect x="92" y="184" width="44" height="22"/>
+        <rect x="95" y="212" width="10" height="16"/> <rect x="112" y="212" width="10" height="16"/> <rect x="130" y="212" width="10" height="16"/>
+        <rect x="83" y="298" width="62" height="6"/>
+      </g>
+      <!-- Colonial buildings right -->
+      <g opacity="0.09" fill="rgba(201,146,13,1)">
+        <rect x="268" y="192" width="56" height="108"/>
+        <rect x="272" y="172" width="48" height="24"/>
+        <rect x="274" y="202" width="12" height="18"/> <rect x="293" y="202" width="12" height="18"/> <rect x="312" y="202" width="12" height="18"/>
+        <rect x="274" y="228" width="12" height="18"/> <rect x="293" y="228" width="12" height="18"/>
+        <rect x="263" y="298" width="66" height="6"/>
+        <rect x="334" y="212" width="52" height="88"/>
+        <rect x="338" y="194" width="44" height="22"/>
+        <rect x="340" y="220" width="10" height="16"/> <rect x="358" y="220" width="10" height="16"/>
+        <rect x="329" y="298" width="62" height="6"/>
+      </g>
+      <!-- Ground line -->
+      <line x1="0" y1="302" x2="400" y2="302" stroke="rgba(201,146,13,0.14)" stroke-width="2"/>
+      <line x1="0" y1="316" x2="400" y2="316" stroke="rgba(201,146,13,0.05)" stroke-width="1"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── TRUST STRIP ──────────────────────────────────────── -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="t-item"><svg class="t-ico" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg><span class="t-lbl">H-Series Licensed<small>Government certified fleet</small></span></div>
+    <div class="t-item"><svg class="t-ico" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg><span class="t-lbl">GPS Tracked<small>Real-time fleet monitoring</small></span></div>
+    <div class="t-item"><svg class="t-ico" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span class="t-lbl">Uniformed Drivers<small>Vetted, background-checked</small></span></div>
+    <div class="t-item"><svg class="t-ico" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="t-lbl">24 / 7 Dispatch<small>Always answered</small></span></div>
+    <div class="t-item"><svg class="t-ico" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg><span class="t-lbl">Fixed Rates<small>No surge, no surprises</small></span></div>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─────────────────────────────────────────── -->
+<section id="services">
+  <div class="si">
+    <span class="eyebrow r">Services</span>
+    <h2 class="st r d1">Transport built for<br/><em>every occasion</em></h2>
+    <div class="amber-rule r d2"></div>
+    <div class="svc-list">
+      <div class="svc-card r">
+        <span class="svc-n">01</span>
+        <div>
+          <div class="svc-title">Airport Transfers</div>
+          <p class="svc-desc">Reliable, on-time collection from Cheddi Jagan International. Fixed rates, flight monitoring included, and up to 30 minutes complimentary wait time — no meter running while you clear customs.</p>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</a>
-                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Products</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">About Us</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Contact</a>
-            </div>
+        <span class="svc-pill">Fixed Rate</span>
+      </div>
+      <div class="svc-card r d1">
+        <span class="svc-n">02</span>
+        <div>
+          <div class="svc-title">Corporate Accounts</div>
+          <p class="svc-desc">Dedicated fleet allocation for businesses, NGOs, and diplomatic missions. Monthly consolidated invoicing, priority dispatch, and a named account manager — no per-trip administration required.</p>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="relative bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-                <div class="text-center">
-                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Your One-Stop Shop for Food Service Disposables</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">High-quality disposable products in foam, foil, paper, plastic, and biodegradable materials.</p>
-                    <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#products" class="rounded-md bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">View Catalog</a>
-                        <a href="#contact" class="text-sm font-semibold leading-6 text-gray-900">Contact Sales <span aria-hidden="true">→</span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="products" class="py-20 sm:py-24 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Section Header -->
-                <div class="max-w-2xl mx-auto text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Product Catalog</h2>
-                    <p class="mt-4 text-lg text-gray-600">Browse our wide selection of disposable products. Filter by category to find exactly what you need.</p>
-                </div>
-
-                <!-- Category Filters -->
-                <div id="category-filters" class="flex flex-wrap justify-center gap-2 mb-12">
-                    <!-- Filters will be injected here by JavaScript -->
-                </div>
-
-                <!-- Product Grid -->
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Products will be injected here by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about" class="py-20 sm:py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Bare Disposibles</h2>
-                        <p class="mt-6 text-lg leading-8 text-gray-600">
-                            We are proud suppliers of a comprehensive range of disposable food service products. Our catalog includes items made from foam, foil, paper, plastic, and eco-friendly biodegradable materials. We are committed to providing quality products and reliable service to businesses and individuals across Trinidad and Tobago.
-                        </p>
-                        <dl class="mt-10 space-y-4 text-base leading-7 text-gray-600">
-                            <div class="flex gap-x-3">
-                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
-                                <dd>Wide selection for all needs</dd>
-                            </div>
-                            <div class="flex gap-x-3">
-                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
-                                <dd>B2B & B2C friendly pricing</dd>
-                            </div>
-                            <div class="flex gap-x-3">
-                                <dt><i data-feather="check-circle" class="mt-1 h-5 w-5 text-emerald-600"></i></dt>
-                                <dd>Eco-friendly options available</dd>
-                            </div>
-                        </dl>
-                    </div>
-                    <div class="order-first md:order-last">
-                        <img src="https://placehold.co/600x400/34D399/FFFFFF?text=Bare+Disposibles" 
-                             alt="A collage of disposable food containers" 
-                             class="rounded-2xl shadow-xl w-full h-auto">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 sm:py-24 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-2xl mx-auto text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Get In Touch</h2>
-                    <p class="mt-4 text-lg text-gray-600">We're here to help. Contact us for orders, inquiries, or quotes.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
-                    <div class="space-y-8">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
-                                <i data-feather="map-pin"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">Address</h3>
-                                <p class="text-gray-600">52 S S Erin Road, Duncan Village</p>
-                                <p class="text-gray-600">San Fernando, Trinidad and Tobago</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
-                                <i data-feather="phone"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">Phone</h3>
-                                <p class="text-gray-600">(868) 741-4452</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
-                                <i data-feather="mail"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">Email</h3>
-                                <p class="text-gray-600"><a href="mailto:baredisposables@gmail.com" class="hover:text-emerald-600">baredisposables@gmail.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Map -->
-                    <div>
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.974955364883!2d-61.46505708573931!3d10.27931117094286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c36181165cb4e6b%3A0x535215e985876008!2sS%20S%20Erin%20Rd%2C%20San%20Fernando%2C%20Trinidad%20%26%20Tobago!5e0!3m2!1sen!2sus!4v1689889264512!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="350" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-lg shadow-md">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400">&copy; 2024 Bare Disposibles. All rights reserved.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <!-- Add social media links here if available -->
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
-                </div>
-            </div>
+        <span class="svc-pill">Monthly Billing</span>
+      </div>
+      <div class="svc-card r d2">
+        <span class="svc-n">03</span>
+        <div>
+          <div class="svc-title">Guided City Tours</div>
+          <p class="svc-desc">Half-day and full-day tours of Georgetown — the Stabroek Market, Botanic Gardens, National Museum, the waterfront. English-speaking drivers with real local knowledge throughout.</p>
         </div>
-    </footer>
+        <span class="svc-pill">Flexible Duration</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- DATA ---
-            const products = [
-                { itemNo: 'RDWCR12', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Red, w/lids', size: '12oz', price: 45.00, qty: 25, category: 'Cups', image: 'cup' },
-                { itemNo: 'RDWCG12', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Green, w/lids', size: '12oz', price: 45.00, qty: 25, category: 'Cups', image: 'cup' },
-                { itemNo: 'RDWCR08', description: 'RIPPLE DOUBLE WALL COFFEE CUPS, Red, w/lids', size: '8oz', price: 41.63, qty: 25, category: 'Cups', image: 'cup' },
-                { itemNo: 'BCP4.5', description: 'BAKING CUPS, pink', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
-                { itemNo: 'BCR4.5', description: 'BAKING CUPS, red', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
-                { itemNo: 'BCB4.5', description: 'BAKING CUPS, black', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
-                { itemNo: 'BCW4.5', description: 'BAKING CUPS, white', size: '4½"', price: 25.00, qty: 24, category: 'Baking', image: 'package' },
-                { itemNo: 'FPL7', description: 'FOIL PANS AND LID', size: '7"', price: 61.00, qty: 25, category: 'Foil', image: 'archive' },
-                { itemNo: 'FPL8', description: 'FOIL PANS AND LID', size: '8"', price: 135.00, qty: 25, category: 'Foil', image: 'archive' },
-                { itemNo: 'FPL9', description: 'FOIL PANS AND LID', size: '9"', price: 110.25, qty: 25, category: 'Foil', image: 'archive' },
-                { itemNo: 'CCC12A', description: '12 CUPCAKE CLEAR CONTAINERS', size: '12 count', price: 19.95, qty: 1, category: 'Containers', image: 'box' },
-                { itemNo: 'CCC06A', description: '6 CUPCAKE CLEAR CONTAINERS', size: '6 count', price: 4.75, qty: 1, category: 'Containers', image: 'box' },
-                { itemNo: 'CCC06B', description: '6 CUPCAKE CLEAR CONTAINERS', size: '6 count', price: 48.00, qty: 12, category: 'Containers', image: 'box' },
-                { itemNo: 'PFCB10', description: 'PINK FLORAL CAKE BOX', size: '10x10"', price: 15.00, qty: 1, category: 'Boxes', image: 'gift' },
-                { itemNo: 'PSCB10', description: 'PINSTRIPE CAKE BOX', size: '10x10"', price: 15.00, qty: 1, category: 'Boxes', image: 'gift' },
-                { itemNo: '120F-P', description: 'FOAM CUP', size: '12oz', price: 325.00, qty: 1000, category: 'Cups', image: 'coffee' },
-                { itemNo: '140F-P', description: 'FOAM CUP', size: '14oz', price: 447.00, qty: 1000, category: 'Cups', image: 'coffee' },
-                { itemNo: '160F-P', description: 'FOAM CUP', size: '16oz', price: 447.00, qty: 1000, category: 'Cups', image: 'coffee' },
-                { itemNo: '120F-C', description: 'FOAM CUP', size: '12oz', price: 9.11, qty: 25, category: 'Cups', image: 'coffee' },
-                { itemNo: '140F-C', description: 'FOAM CUP', size: '14oz', price: 12.15, qty: 25, category: 'Cups', image: 'coffee' },
-                { itemNo: '160F-C', description: 'FOAM CUP', size: '16oz', price: 12.15, qty: 25, category: 'Cups', image: 'coffee' },
-                { itemNo: 'CC4', description: 'CUP CARRIER', size: '4 cup', price: 1.75, qty: 1, category: 'Accessories', image: 'grid' },
-                { itemNo: '01-00-25B (3PL)', description: '9" Palmleaf Plate', size: '9"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-00-13B (3PL)', description: '6"x6" Compostable Palmleaf Bowl', size: '6x6"', price: 42.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-00-20B (3PL)', description: '8"x8" Compostable Palmleaf Bowl', size: '8x8"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '02-22-6PY (3PL)', description: '6.5" Compostable Palmleaf Deep Pyramid Bowl', size: '6.5"', price: 48.00, qty: 25, category: 'Biodegradable', image: 'triangle' },
-                { itemNo: '01-00-5DR (3PL)', description: '5x5" Compostable Palmleaf Deep Bowl', size: '5x5"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-00-22B (3PL)', description: '8x8" Compostable Palmleaf Salad Bowl', size: '8x8"', price: 57.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-01-20B (3PL)', description: '7" Compostable Palmleaf Round plates', size: '7"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-01-25B (3PL)', description: '10" Compostable Palmleaf Round Plates', size: '10"', price: 55.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-22-15B (3PL)', description: '6" Compostable Palmleaf Plate', size: '6"', price: 43.00, qty: 25, category: 'Biodegradable', image: 'circle' },
-                { itemNo: '01-00-16B (3PL)', description: '7"x7" Compostable Palmleaf Square Plate', size: '7x7"', price: 48.00, qty: 25, category: 'Biodegradable', image: 'square' },
-                { itemNo: 'TG-CB-4x6 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '4x6x2"', price: 7.36, qty: 1, category: 'Biodegradable', image: 'package' },
-                { itemNo: 'TG-CB-6x8 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '6.5x8.5x3"', price: 11.04, qty: 1, category: 'Biodegradable', image: 'package' },
-                { itemNo: 'TG-CB-8x1 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '8x11x3"', price: 15.84, qty: 1, category: 'Biodegradable', image: 'package' },
-                { itemNo: 'TG-CB-5x1 (3PL)', description: 'Collapsible Balsawood Box with Attached Lid', size: '11x15x3"', price: 15.84, qty: 1, category: 'Biodegradable', image: 'package' },
-                { itemNo: 'TG-BB-6x6 (3PL)', description: 'Collapsible Balsawood Box with Lid (Compartment)', size: '6x8"', price: 13.60, qty: 1, category: 'Biodegradable', image: 'package' },
-            ];
+<!-- ─── HOW IT WORKS ──────────────────────────────────────── -->
+<section id="how">
+  <div class="si">
+    <span class="eyebrow r" style="color:var(--amber)">Simple by design</span>
+    <h2 class="st ink r d1">Three steps to<br/><em>your ride</em></h2>
+    <div class="amber-rule r d2"></div>
+    <div class="steps">
+      <div class="step r">
+        <div class="step-n">01</div>
+        <div class="step-title">Message Us</div>
+        <p class="step-desc">Send your pickup location and time via WhatsApp. No app to download, no account to create. A real person responds within minutes.</p>
+      </div>
+      <div class="step r d1">
+        <div class="step-n">02</div>
+        <div class="step-title">Confirm Your Fare</div>
+        <p class="step-desc">We quote your fare upfront — fixed and final. You get your driver's name, vehicle plate, and estimated arrival time before anyone moves.</p>
+      </div>
+      <div class="step r d2">
+        <div class="step-n">03</div>
+        <div class="step-title">Arrive, Relaxed</div>
+        <p class="step-desc">Your uniformed driver arrives on schedule. Cash or card accepted. No negotiation, no surprises — a professional, comfortable journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // --- DOM Elements ---
-            const productGrid = document.getElementById('product-grid');
-            const categoryFilters = document.getElementById('category-filters');
-            const cartCountElement = document.getElementById('cart-count');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+<!-- ─── FOUNDER ───────────────────────────────────────────── -->
+<div id="founder">
+  <div class="founder-shell">
+    <div class="founder-q r">
+      <blockquote class="fq">
+        "In this city, your driver is often the first person you meet and the last you see.
+        <span>That impression matters.</span>
+        I built this service on the same standard I hold myself to."
+      </blockquote>
+      <p class="fq-attr"><strong>Anil Kissoon</strong> — Founder &amp; Principal Driver<br/>Georgetown, Guyana</p>
+    </div>
+    <div class="founder-stats r d1">
+      <div><span class="f-stat-n">18+</span><p class="f-stat-l">Years operating in Georgetown</p></div>
+      <div><span class="f-stat-n">100%</span><p class="f-stat-l">H-Series licensed fleet, every vehicle</p></div>
+      <div><span class="f-stat-n">24 / 7</span><p class="f-stat-l">Dispatch, including public holidays</p></div>
+    </div>
+  </div>
+</div>
 
-            let cartCount = 0;
+<!-- ─── PRICING ───────────────────────────────────────────── -->
+<section id="pricing">
+  <div class="si">
+    <span class="eyebrow r">Transparent Fares</span>
+    <h2 class="st r d1">Flat rates,<br/><em>common routes</em></h2>
+    <div class="amber-rule r d2"></div>
+    <div class="price-badge r d3">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>
+      All rates fixed and agreed before departure — no surge pricing, ever.
+    </div>
+    <div class="r">
+      <table class="ptable">
+        <thead><tr><th>Route</th><th>Type</th><th>Rate (GYD)</th></tr></thead>
+        <tbody>
+          <tr><td>Cheddi Jagan Airport → City Centre</td><td>Airport Transfer</td><td>GYD 8,500</td></tr>
+          <tr><td>City Centre → Cheddi Jagan Airport</td><td>Airport Transfer</td><td>GYD 8,500</td></tr>
+          <tr><td>Kitty → Downtown Georgetown</td><td>City Transfer</td><td>GYD 1,200</td></tr>
+          <tr><td>Georgetown → Demerara Harbour Bridge</td><td>City Transfer</td><td>GYD 2,200</td></tr>
+          <tr><td>City Centre → Botanic Gardens</td><td>City Transfer</td><td>GYD 1,500</td></tr>
+          <tr><td>Georgetown → Parika</td><td>Regional</td><td>GYD 4,800</td></tr>
+          <tr><td>Half-Day City Tour (up to 4 hrs)</td><td>Guided Tour</td><td>GYD 18,000</td></tr>
+          <tr><td>Full-Day City Tour (up to 8 hrs)</td><td>Guided Tour</td><td>GYD 32,000</td></tr>
+        </tbody>
+      </table>
+      <p class="price-note">All rates in Guyanese Dollars. Airport transfers include 30 minutes complimentary wait time. USD and card payment available. Multi-stop routes quoted on request.</p>
+    </div>
+  </div>
+</section>
 
-            // --- Functions ---
-            
-            // Function to create a product card
-            function createProductCard(product) {
-                return `
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 ease-in-out flex flex-col">
-                        <div class="bg-gray-200 h-48 flex items-center justify-center text-gray-400">
-                           <i data-feather="${product.image || 'package'}" class="w-16 h-16"></i>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-lg font-semibold text-gray-900 flex-grow">${product.description}</h3>
-                            <div class="mt-4">
-                                <p class="text-sm text-gray-500">Item #: ${product.itemNo}</p>
-                                <p class="text-sm text-gray-500">Size: ${product.size}</p>
-                                <p class="text-sm text-gray-500">Qty: ${product.qty}</p>
-                            </div>
-                            <div class="mt-6 flex justify-between items-center">
-                                <p class="text-xl font-bold text-gray-900">$${product.price.toFixed(2)}</p>
-                                <button class="add-to-cart-btn rounded-md bg-emerald-100 text-emerald-700 px-3 py-2 text-sm font-medium hover:bg-emerald-200" data-product-id="${product.itemNo}">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
+<!-- ─── COVERAGE ──────────────────────────────────────────── -->
+<section id="coverage">
+  <div class="si">
+    <span class="eyebrow r">Where We Operate</span>
+    <h2 class="st ink r d1">Coverage across<br/><em>Greater Georgetown</em></h2>
+    <div class="amber-rule r d2"></div>
+    <div class="cov-grid">
+      <div class="map-wrap r">
+        <svg class="map-svg" viewBox="0 0 340 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="340" height="360" fill="#0C1810"/>
+          <line x1="0" y1="72" x2="340" y2="72" stroke="#182818" stroke-width="1"/>
+          <line x1="0" y1="144" x2="340" y2="144" stroke="#182818" stroke-width="1"/>
+          <line x1="0" y1="216" x2="340" y2="216" stroke="#182818" stroke-width="1"/>
+          <line x1="0" y1="288" x2="340" y2="288" stroke="#182818" stroke-width="1"/>
+          <line x1="68" y1="0" x2="68" y2="360" stroke="#182818" stroke-width="1"/>
+          <line x1="136" y1="0" x2="136" y2="360" stroke="#182818" stroke-width="1"/>
+          <line x1="204" y1="0" x2="204" y2="360" stroke="#182818" stroke-width="1"/>
+          <line x1="272" y1="0" x2="272" y2="360" stroke="#182818" stroke-width="1"/>
+          <path d="M0 308 Q80 294 140 314 Q200 330 260 316 Q300 308 340 320" stroke="#0D1F20" stroke-width="22" fill="none"/>
+          <text x="38" y="340" fill="#1B3A20" font-size="7" font-family="DM Sans,sans-serif" letter-spacing="4" font-weight="300">DEMERARA RIVER</text>
+          <path d="M40 60 L40 294" stroke="#1E3820" stroke-width="4"/>
+          <path d="M120 50 L120 294" stroke="#1E3820" stroke-width="3"/>
+          <path d="M200 60 L200 288" stroke="#1E3820" stroke-width="3"/>
+          <path d="M20 136 L318 136" stroke="#1E3820" stroke-width="4"/>
+          <path d="M20 196 L318 196" stroke="#1E3820" stroke-width="3"/>
+          <circle cx="80" cy="146" r="7" fill="#C9920D"/>
+          <circle cx="80" cy="146" r="15" fill="rgba(201,146,13,0.11)"/>
+          <text x="98" y="143" fill="#C9920D" font-size="9" font-family="DM Sans,sans-serif" font-weight="500">City Centre</text>
+          <circle cx="160" cy="110" r="5" fill="#C9920D" opacity="0.55"/>
+          <text x="170" y="113" fill="#4A6050" font-size="8" font-family="DM Sans,sans-serif">Kitty</text>
+          <circle cx="242" cy="120" r="5" fill="#C9920D" opacity="0.55"/>
+          <text x="252" y="116" fill="#4A6050" font-size="8" font-family="DM Sans,sans-serif">Queenstown</text>
+          <circle cx="58" cy="224" r="5" fill="#C9920D" opacity="0.55"/>
+          <text x="68" y="227" fill="#4A6050" font-size="8" font-family="DM Sans,sans-serif">Ruimveldt</text>
+          <circle cx="174" cy="206" r="5" fill="#C9920D" opacity="0.55"/>
+          <text x="184" y="209" fill="#4A6050" font-size="8" font-family="DM Sans,sans-serif">Campbellville</text>
+          <circle cx="296" cy="42" r="9" fill="none" stroke="#C9920D" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.6"/>
+          <circle cx="296" cy="42" r="3" fill="#C9920D" opacity="0.6"/>
+          <text x="258" y="30" fill="#C9920D" font-size="7" font-family="DM Sans,sans-serif" letter-spacing="1">CJIA</text>
+          <line x1="296" y1="51" x2="296" y2="76" stroke="rgba(201,146,13,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="14" y="23" fill="rgba(201,146,13,0.35)" font-size="10" font-family="DM Sans,sans-serif">N</text>
+          <line x1="18" y1="26" x2="18" y2="36" stroke="rgba(201,146,13,0.3)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="zone-list r d1">
+        <div class="zone-row"><div class="zpip"></div><div><div class="zname">City Centre &amp; Downtown</div><p class="zdesc">Stabroek Market, Parliament Buildings, High Court, Georgetown Hospital, Embassies along Main Street</p></div></div>
+        <div class="zone-row"><div class="zpip"></div><div><div class="zname">Kitty &amp; Campbellville</div><p class="zdesc">Residential district transfers, hotel pickups, restaurant and event drops</p></div></div>
+        <div class="zone-row"><div class="zpip"></div><div><div class="zname">Queenstown &amp; Bel Air</div><p class="zdesc">Diplomatic and executive residential zone — regular corporate account holders preferred</p></div></div>
+        <div class="zone-row"><div class="zpip"></div><div><div class="zname">CJIA Airport Corridor</div><p class="zdesc">Cheddi Jagan International via East Bank Demerara highway. Flight monitoring included.</p></div></div>
+        <div class="zone-row"><div class="zpip soft"></div><div><div class="zname">Regional (On Request)</div><p class="zdesc">Parika, Linden, Berbice corridor, East Coast Demerara — quoted individually</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Function to render products
-            function renderProducts(filter = 'All') {
-                productGrid.innerHTML = '';
-                const filteredProducts = filter === 'All' ? products : products.filter(p => p.category === filter);
-                
-                if (filteredProducts.length === 0) {
-                    productGrid.innerHTML = `<p class="text-center col-span-full">No products found in this category.</p>`;
-                    return;
-                }
+<!-- ─── DRIVERS ───────────────────────────────────────────── -->
+<section id="drivers">
+  <div class="si">
+    <span class="eyebrow r">The People Behind the Wheel</span>
+    <h2 class="st r d1">Vetted. Trained.<br/><em>Dependable.</em></h2>
+    <p class="sb r d2">Every driver is personally vetted, background-checked, and trained in professional conduct. You will always know who is collecting you — by name and plate — before they arrive.</p>
+    <div class="dg">
+      <div class="dc r"><div class="da">AK</div><div class="dn">Anil Kissoon</div><div class="dy">Founder · 18 Years</div><span class="db">H-Series Licensed</span></div>
+      <div class="dc r d1"><div class="da">RS</div><div class="dn">Ramesh Singh</div><div class="dy">Senior Driver · 9 Years</div><span class="db">H-Series Licensed</span></div>
+      <div class="dc r d2"><div class="da">KJ</div><div class="dn">Kevin James</div><div class="dy">Driver · 5 Years</div><span class="db">H-Series Licensed</span></div>
+      <div class="dc r d3"><div class="da">MP</div><div class="dn">Marcus Persaud</div><div class="dy">Driver · 4 Years</div><span class="db">H-Series Licensed</span></div>
+    </div>
+  </div>
+</section>
 
-                filteredProducts.forEach(product => {
-                    productGrid.innerHTML += createProductCard(product);
-                });
-                feather.replace(); // Re-initialize icons after rendering
-            }
+<!-- ─── WHY NOT RIDESHARE ─────────────────────────────────── -->
+<section id="why">
+  <div class="si">
+    <span class="eyebrow r">An Honest Comparison</span>
+    <h2 class="st r d1">Why not just use<br/><em>a rideshare app?</em></h2>
+    <p class="sb r d2">In Georgetown, the case for a dedicated private service is practical — not aspirational. Here is what the comparison looks like on the ground.</p>
+    <div class="vs-wrap r">
+      <div class="vs-div"></div>
+      <div class="vs-col them">
+        <div class="vs-head vh-them">Rideshare Apps</div>
+        <div class="vr"><svg class="vcx" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12"/></svg><div class="vt">Surge pricing during events, rain, or peak hours<span>Fares can double or triple without warning</span></div></div>
+        <div class="vr"><svg class="vcx" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12"/></svg><div class="vt">Driver unknown until pickup<span>No advance confirmation of who or what is arriving</span></div></div>
+        <div class="vr"><svg class="vcx" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12"/></svg><div class="vt">Requires a local data plan and app account<span>Unreliable in areas of low connectivity</span></div></div>
+        <div class="vr"><svg class="vcx" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12"/></svg><div class="vt">No corporate invoice or account facility<span>Expensing individual trips is cumbersome</span></div></div>
+        <div class="vr"><svg class="vcx" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12"/></svg><div class="vt">Vehicle condition and licensing unverified<span>No H-Series guarantee; vetting is platform-level only</span></div></div>
+      </div>
+      <div class="vs-col us">
+        <div class="vs-head vh-us">Anil Kissoon Taxis</div>
+        <div class="vr"><svg class="vck" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div class="vt">Fixed fare quoted and agreed before departure<span>The price you see is the price you pay</span></div></div>
+        <div class="vr"><svg class="vck" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div class="vt">Driver name and plate confirmed via WhatsApp<span>You know who is arriving, in what vehicle, before they move</span></div></div>
+        <div class="vr"><svg class="vck" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div class="vt">Books via WhatsApp — works on any phone<span>No app, no data plan, no account registration needed</span></div></div>
+        <div class="vr"><svg class="vck" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div class="vt">Monthly invoicing for companies and NGOs<span>Formal receipts, account management, dedicated fleet</span></div></div>
+        <div class="vr"><svg class="vck" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div class="vt">Government-licensed H-Series vehicles only<span>Every driver personally vetted and uniformed</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Function to create and render category filters
-            function renderFilters() {
-                const categories = ['All', ...new Set(products.map(p => p.category))];
-                categoryFilters.innerHTML = categories.map(cat => `
-                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-gray-300 rounded-full hover:bg-gray-200 transition-colors" data-category="${cat}">
-                        ${cat}
-                    </button>
-                `).join('');
+<!-- ─── CTA BAND ───────────────────────────────────────────── -->
+<div class="cta-band">
+  <div class="halftone" style="opacity:0.3"></div>
+  <h2 class="r">Ready to travel with <em>confidence?</em></h2>
+  <p class="r d1">Message us now. Confirmed booking — driver name, plate, and fixed fare — within minutes.</p>
+  <a class="btn-wa r d2" href="https://wa.me/5926475302?text=Hi%2C%20I'd%20like%20to%20book%20a%20premium%20taxi.%20Pickup%3A%20%5BLocation%5D%20at%20%5BTime%5D." target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.562 4.134 1.541 5.864L0 24l6.305-1.515A11.947 11.947 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.359-.213-3.741.898.946-3.635-.234-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>
+    Book via WhatsApp · +592 647 5302
+  </a>
+</div>
 
-                const filterButtons = document.querySelectorAll('.filter-btn');
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
-                        button.classList.add('active-filter');
-                        renderProducts(button.dataset.category);
-                    });
-                });
-                // Set 'All' as active by default
-                filterButtons[0].classList.add('active-filter');
-            }
-            
-            // Function to handle adding to cart
-            function handleAddToCart(e) {
-                if (e.target.classList.contains('add-to-cart-btn')) {
-                    cartCount++;
-                    cartCountElement.textContent = cartCount;
-                    cartCountElement.classList.add('animate-ping-once');
-                    setTimeout(() => cartCountElement.classList.remove('animate-ping-once'), 500); // Custom animation class
-                }
-            }
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="fg">
+    <div>
+      <span class="fb-name">Anil Kissoon Taxis</span>
+      <span class="fb-loc">Georgetown · Guyana</span>
+      <p class="fb-p">Georgetown's trusted premium taxi service. Serving expatriates, corporate clients, and international visitors since 2006.</p>
+    </div>
+    <div class="fc">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Airport Transfers</a></li>
+        <li><a href="#services">Corporate Accounts</a></li>
+        <li><a href="#services">Guided City Tours</a></li>
+        <li><a href="#pricing">View Rates</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/5926475302" target="_blank" rel="noopener">WhatsApp: +592 647 5302</a></li>
+        <li><a href="#coverage">Coverage Areas</a></li>
+        <li><a href="#how">How to Book</a></li>
+        <li><a href="#drivers">Our Drivers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb-bot">
+    <p>© 2025 Anil Kissoon Taxis. Georgetown, Guyana. All rights reserved.</p>
+    <span class="lic-badge">H-Series Licensed Fleet</span>
+  </div>
+</footer>
 
-            // --- Event Listeners ---
-            
-            // Mobile menu toggle
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.setAttribute('data-feather', mobileMenu.classList.contains('hidden') ? 'menu' : 'x');
-                feather.replace();
-            });
+<!-- ─── FLOATING WHATSAPP ─────────────────────────────────── -->
+<div class="wa-float">
+  <span class="wa-lbl">Book via WhatsApp</span>
+  <a class="wa-btn" href="https://wa.me/5926475302?text=Hi%2C%20I'd%20like%20to%20book%20a%20premium%20taxi.%20Pickup%3A%20%5BLocation%5D%20at%20%5BTime%5D." target="_blank" rel="noopener" aria-label="Book via WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.562 4.134 1.541 5.864L0 24l6.305-1.515A11.947 11.947 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.359-.213-3.741.898.946-3.635-.234-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>
+  </a>
+</div>
 
-            // Close mobile menu when a link is clicked
-            mobileMenu.addEventListener('click', (e) => {
-                if(e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.querySelector('i').setAttribute('data-feather', 'menu');
-                    feather.replace();
-                }
-            });
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
 
-            // Add to cart event delegation
-            productGrid.addEventListener('click', handleAddToCart);
+  // Header on scroll
+  const hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', () => {
+    hdr.style.background = window.scrollY > 50 ? 'rgba(13,31,53,0.99)' : 'rgba(13,31,53,0.96)';
+  }, { passive: true });
 
-
-            // --- Initial Load ---
-            renderFilters();
-            renderProducts();
-            feather.replace();
-
-            // Add a simple animation class for the cart count
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes ping-once {
-                    75%, 100% {
-                        transform: scale(1.5);
-                        opacity: 0;
-                    }
-                }
-                .animate-ping-once {
-                    animation: ping-once 0.5s cubic-bezier(0, 0, 0.2, 1);
-                }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
+  // Smooth anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
 </body>
 </html>
